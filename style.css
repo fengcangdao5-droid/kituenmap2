@@ -1,0 +1,233 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    width: 100%;
+    height: 100vh;
+}
+
+.smoking-icon {
+    font-family: 'Material Icons';
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+}
+
+.icon-red {
+    color: white;
+    background-color: #e74c3c;
+}
+
+.icon-blue {
+    color: white;
+    background-color: #7f8c8d;
+}
+
+.icon-elec-purple-red {
+    color: white;
+    background-color: #8e44ad;
+}
+
+.icon-elec-purple-blue {
+    color: white;
+    background-color: #9b59b6;
+}
+
+.icon-elec-red {
+    color: white;
+    background-color: #f39c12;
+}
+
+.icon-elec-blue {
+    color: white;
+    background-color: #d35400;
+}
+
+.icon-person {
+    color: white;
+    background-color: #27ae60; 
+    border: 2px solid white;
+}
+
+#brand-btn {
+    position: absolute;
+    bottom: 30px; 
+    left: 20px;   
+    z-index: 1000;
+    padding: 12px 20px;
+    background-color: #2c3e50; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 2000; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7); 
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    position: relative;
+    max-height: 80vh; 
+    overflow-y: auto; 
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.brand-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+.brand-item h3 { margin: 0; font-size: 18px; color: #333; }
+.brand-item p { margin: 5px 0 0 0; font-size: 14px; color: #666; }
+
+#fav-btn {
+    position: absolute;
+    bottom: 80px; 
+    left: 20px;
+    z-index: 1000;
+    padding: 12px 20px;
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+#fav-btn:hover {
+    background-color: #e67e22;
+}
+
+.icon-shop-near {
+    color: white;
+    background-color: #2ecc71;
+}
+
+.icon-shop-far {
+    color: white;
+    background-color: #27ae60;
+}
+
+.icon-conv-near {
+    color: white;
+    background-color: #3498db;
+}
+
+.icon-conv-far {
+    color: white;
+    background-color: #2980b9;
+}
+
+/* ====== ルート案内パネルの調整（Leaflet Routing Machine） ====== */
+.leaflet-routing-container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    max-width: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 13px;
+}
+/* 既存のコードがここにあるとします */
+
+/* Leaflet Routing Machine の指示パネルを非表示にする */
+.leaflet-routing-container {
+    display: none !important;
+}
+/* ユーザー追加ピン用（範囲内：オレンジ、範囲外：明るいグレー） */
+.icon-custom-near {
+    color: white;
+    background-color: #f39c12; /* オレンジ色 */
+}
+
+.icon-custom-far {
+    color: white;
+    background-color: #95a5a6; /* 明るめのグレー */
+}
+
+/* ====== マルチルート選択パネル（画面右下） ====== */
+#route-selector-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 5px;
+    max-width: calc(100% - 40px);
+    -webkit-overflow-scrolling: touch;
+}
+
+/* スクロールバーを非表示（デザイン性を高めるため） */
+#route-selector-container::-webkit-scrollbar {
+    display: none;
+}
+#route-selector-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ルートカードのホバー・アクティブ効果 */
+#route-selector-container > div {
+    user-select: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#route-selector-container > div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25) !important;
+}
+
+#route-selector-container > div:active {
+    transform: translateY(0);
+}
+
+/* スマホ画面（幅600px以下）での調整 */
+@media (max-width: 600px) {
+    #route-selector-container {
+        bottom: 15px;
+        right: 15px;
+        left: auto; /* 左側のボタン類と重ならないように調整 */
+    }
+}
+
+/* スマホ等でテキスト案内が邪魔な場合は非表示にしたい場合のクラス設定 */
+/*
+.leaflet-routing-container {
+    display: none !important;
+}
+*/
